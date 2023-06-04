@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 from __future__ import print_function
 import sys
@@ -75,7 +75,7 @@ class scheduler:
                 self.proc_info[proc_id][PROC_CODE].append(DO_IO_DONE)
             else:
                 print('bad opcode %s (should be c or i)' % opcode)
-                exit(1)
+                sys.exit(1)
         return
 
     def load(self, program_description):
@@ -85,7 +85,7 @@ class scheduler:
             print('Bad description (%s): Must be number <x:y>' % program_description)
             print('  where X is the number of instructions')
             print('  and Y is the percent change that an instruction is CPU not IO')
-            exit(1)
+            sys.exit(1)
 
         num_instructions, chance_cpu = int(tmp[0]), float(tmp[1])/100.0
         for i in range(num_instructions):
@@ -330,7 +330,7 @@ if options.solve == False:
     else:
         print('run LATER (when it is its turn)')
     print('')
-    exit(0)
+    sys.exit(0)
 
 (cpu_busy, io_busy, clock_tick) = s.run()
 
